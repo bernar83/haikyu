@@ -5,27 +5,18 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 
 class CategoryForm extends Component {
-  state = {
-    category: ""
-  };
-
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
   render() {
     return (
       <FormControl>
         <InputLabel>Category</InputLabel>
         <Select
-          value={this.state.category}
-          onChange={this.handleChange}
+          value={this.props.category}
+          onChange={this.props.handleChange}
           inputProps={{
             name: "category"
           }}
         >
           {[
-            "",
             "Ace",
             "Kill",
             "Block",
@@ -35,7 +26,11 @@ class CategoryForm extends Component {
             "Hitting Error",
             "Blocking Error"
           ].map(category => {
-            return <MenuItem value={category}>{category}</MenuItem>;
+            return (
+              <MenuItem key={category} value={category}>
+                {category}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>

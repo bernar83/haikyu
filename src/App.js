@@ -34,17 +34,18 @@ class App extends Component {
       ]
     },
     isFormOpen: false,
-    isAdd: false
+    isAdd: false,
+    category: "Ace"
   };
 
-  handleAddFormOpen = () => {
-    this.setState({ isFormOpen: true, isAdd: true }, () => {
+  handleAdd = () => {
+    this.setState({ isAdd: true }, () => {
       this.setData();
     });
   };
 
-  handleSubtractFormOpen = () => {
-    this.setState({ isFormOpen: true, isAdd: false }, () => {
+  handleSubtract = () => {
+    this.setState({ isAdd: false }, () => {
       this.setData();
     });
   };
@@ -53,23 +54,32 @@ class App extends Component {
     if (this.state.isAdd) {
       const { datasets, labels } = this.state.chartData;
       datasets[0].data = add(datasets[0].data);
+      labels.push(this.state.category);
       this.setState({ chartData: { labels, datasets } });
     } else {
       const { datasets, labels } = this.state.chartData;
       datasets[0].data = subtract(datasets[0].data);
+      labels.push(this.state.category);
       this.setState({ chartData: { labels, datasets } });
     }
+  };
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     return (
       <div>
-        <Line data={this.state.chartData} />
-        <CategoryForm />
+        <Line data={this.state.chartData} redraw />
+        <CategoryForm
+          handleChange={this.handleChange}
+          category={this.state.category}
+        />
         <Button
           variant="contained"
           color="primary"
-          onClick={this.handleSubtractFormOpen}
+          onClick={this.handleSubtract}
         >
           -
         </Button>
@@ -80,11 +90,7 @@ class App extends Component {
         >
           Delete
         </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleAddFormOpen}
-        >
+        <Button variant="contained" color="primary" onClick={this.handleAdd}>
           +
         </Button>
       </div>
