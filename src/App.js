@@ -29,7 +29,7 @@ class App extends Component {
           pointRadius: 1,
           pointHitRadius: 10,
           data: [0],
-          steppedLine: true
+          steppedLine: "after"
         }
       ]
     },
