@@ -64,6 +64,17 @@ class App extends Component {
     }
   };
 
+  handleDelete = () => {
+    console.log("handleDelete worked");
+    if (this.state.chartData.datasets[0].data.length > 1) {
+      console.log("deleting");
+      const { datasets, labels } = this.state.chartData;
+      datasets[0].data.pop();
+      labels.pop();
+      this.setState({ chartData: { labels, datasets } });
+    }
+  };
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
