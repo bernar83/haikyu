@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import Button from "@material-ui/core/Button";
 
+import CategoryForm from "./components/CategoryForm";
+
 class App extends Component {
   state = {
     chartData: {
@@ -63,6 +65,7 @@ class App extends Component {
     return (
       <div>
         <Line data={this.state.chartData} />
+        <CategoryForm />
         <Button
           variant="contained"
           color="primary"
