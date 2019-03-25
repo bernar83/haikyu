@@ -65,9 +65,7 @@ class App extends Component {
   };
 
   handleDelete = () => {
-    console.log("handleDelete worked");
     if (this.state.chartData.datasets[0].data.length > 1) {
-      console.log("deleting");
       const { datasets, labels } = this.state.chartData;
       datasets[0].data.pop();
       labels.pop();
@@ -82,28 +80,51 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Line data={this.state.chartData} redraw />
-        <CategoryForm
-          handleChange={this.handleChange}
-          category={this.state.category}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleSubtract}
-        >
-          -
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={this.handleDelete}
-        >
-          Delete
-        </Button>
-        <Button variant="contained" color="primary" onClick={this.handleAdd}>
-          +
-        </Button>
+        <Line data={this.state.chartData} options={options} redraw />
+        <div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "10px"
+            }}
+          >
+            <CategoryForm
+              handleChange={this.handleChange}
+              category={this.state.category}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSubtract}
+            >
+              -
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.handleDelete}
+            >
+              Delete
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleAdd}
+            >
+              +
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -119,6 +140,14 @@ const subtract = data => {
   const lastArraryNumber = data[data.length - 1];
   data.push(lastArraryNumber - 1);
   return data;
+};
+
+const options = {
+  responsive: true,
+  title: {
+    display: true,
+    text: "Haikyu"
+  }
 };
 
 export default App;

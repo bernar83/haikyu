@@ -7,7 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 class CategoryForm extends Component {
   render() {
     return (
-      <FormControl>
+      <FormControl style={{ display: "block" }}>
         <InputLabel>Category</InputLabel>
         <Select
           value={this.props.category}
