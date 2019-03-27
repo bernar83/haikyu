@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
     "chart.js": "^2.8.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.5",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.8.5",
@@ -13,6 +14,8 @@
     "react-scripts": "2.1.8"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -21,7 +24,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:5000",
+  "homepage": "https://bernar83.github.io/haikyu",
   "browserslist": [
     ">0.2%",
     "not dead",
